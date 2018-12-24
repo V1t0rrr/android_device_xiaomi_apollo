@@ -86,6 +86,10 @@ PRODUCT_PACKAGES += \
     libhidltransport.vendor \
     libhwbinder.vendor
 
+# IFAA manager
+PRODUCT_PACKAGES += \
+    org.ifaa.android.manager
+
 # Init
 PRODUCT_PACKAGES += \
     init.mi.btmac.sh \
