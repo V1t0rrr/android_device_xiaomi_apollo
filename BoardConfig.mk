@@ -29,6 +29,9 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Display
 TARGET_USES_VULKAN := true
 
+# Gestures
+TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
+
 # HIDL
 DEVICE_MANIFEST_FILE += \
     $(DEVICE_PATH)/configs/vintf/xiaomi_manifest.xml
