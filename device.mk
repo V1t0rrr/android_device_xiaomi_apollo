@@ -77,6 +77,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.sf.native_mode=2 \
     ro.surface_flinger.support_kernel_idle_timer=true
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service.apollo
+
+PRODUCT_PACKAGES += \
+    vendor.xiaomi.hardware.fingerprintextension@1.0.vendor
+
 # Gatekeeper
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true
