@@ -29,6 +29,10 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Display
 TARGET_USES_VULKAN := true
 
+# HIDL
+DEVICE_MANIFEST_FILE += \
+    $(DEVICE_PATH)/configs/vintf/xiaomi_manifest.xml
+
 # Kernel
 KERNEL_DEFCONFIG := apollo_defconfig
 
