@@ -42,6 +42,11 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_apollo
 # Kernel
 KERNEL_DEFCONFIG := apollo_defconfig
 
+# Properties
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
