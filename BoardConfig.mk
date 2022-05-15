@@ -42,6 +42,9 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_apollo
 # Kernel
 KERNEL_DEFCONFIG := apollo_defconfig
 
+# Platform
+BOARD_VENDOR := xiaomi
+
 # Properties
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
