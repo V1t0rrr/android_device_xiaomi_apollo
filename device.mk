@@ -32,6 +32,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
+# Camera
+PRODUCT_PACKAGES += \
+    CutoutRingServiceApollo
+
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.set_idle_timer_ms=1500 \
@@ -85,6 +89,14 @@ PRODUCT_SOONG_NAMESPACES += \
 # NFC
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/nfc/,$(TARGET_COPY_OUT_VENDOR)/etc)
+
+# Overlays
+PRODUCT_PACKAGES += \
+    AOSPAApolloFrameworks \
+    AOSPAApolloSettings \
+    AOSPAApolloSystemUI \
+    ApolloFrameworks \
+    ApolloSystemUI
 
 # Project ID Quota
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
