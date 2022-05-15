@@ -63,6 +63,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
+# Camera
+PRODUCT_PACKAGES += \
+    CutoutRingServiceApollo
+
 # Device Personalization Services
 PRODUCT_PACKAGES += \
     MatchmakerPrebuilt
@@ -96,6 +100,14 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.sensor.proximity=true
+
+# Overlays
+PRODUCT_PACKAGES += \
+    AOSPAApolloFrameworks \
+    AOSPAApolloSettings \
+    AOSPAApolloSystemUI \
+    ApolloFrameworks \
+    ApolloSystemUI
 
 # Public libraries
 PRODUCT_COPY_FILES += \
