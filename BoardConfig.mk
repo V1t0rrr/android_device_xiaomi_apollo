@@ -61,6 +61,12 @@ CONFIG_ACS := true
 CONFIG_IEEE80211AC := true
 CONFIG_IEEE80211AX := true
 
+# Sepolicy
+SELINUX_IGNORE_NEVERALLOWS := true
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+
 # Inherit the proprietary files
 include vendor/xiaomi/apollo/BoardConfigVendor.mk
 include vendor/xiaomi/sm8250-common/BoardConfigVendor.mk
