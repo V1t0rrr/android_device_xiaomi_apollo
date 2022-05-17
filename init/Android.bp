@@ -19,16 +19,16 @@ prebuilt_etc {
 }
 
 prebuilt_etc {	
-    name: "init.alioth.rc",	
-    src: "init.alioth.rc",	
+    name: "init.apollo.rc",	
+    src: "init.apollo.rc",	
     sub_dir: "init",	
     vendor: true,	
 }
 
 prebuilt_etc {	
-    name: "ueventd.alioth.rc",	
+    name: "ueventd.apollo.rc",	
     filename: "ueventd.rc",	
-    src: "ueventd.alioth.rc",	
+    src: "ueventd.apollo.rc",	
     vendor: true,	
 }	
 
@@ -39,10 +39,10 @@ sh_binary {
 }
 
 cc_library_static {	
-    name: "libinit_alioth",	
+    name: "libinit_apollo",	
     recovery_available: true,	
     shared_libs: ["libbase"],	
-    srcs: ["init_alioth.cpp"],	
+    srcs: ["init_apollo.cpp"],	
     include_dirs: [	
         "system/core/init",	
         "system/libbase/include"	

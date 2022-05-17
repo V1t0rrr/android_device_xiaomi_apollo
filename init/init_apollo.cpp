@@ -53,44 +53,47 @@ void load_dalvikvm_properties() {
     property_override("dalvik.vm.heapminfree", "8m");
 }
 
-void load_redmi_k40() {
-    property_override("ro.boot.product.hardware.sku", "alioth");
-    property_override("ro.product.model", "M2012K11AC");
-    property_override("ro.product.brand", "Redmi");
-    property_override("ro.product.vendor.marketname", "Redmi K40");
-    property_override("ro.product.vendor.manufacturer", "Xiaomi");
-    property_override("ro.product.vendor.brand", "Redmi");
-    property_override("ro.product.vendor.model", "M2012K11AC");
+void set_ro_build_prop(const string &source, const string &prop,
+                       const string &value, bool product = false) {
+    string prop_name;
+
+    if (product)
+        prop_name = "ro.product." + source + prop;
+    else
+        prop_name = "ro." + source + "build." + prop;
+
+    property_override(prop_name.c_str(), value.c_str(), true);
 }
 
-void load_poco_f3() {
-    property_override("ro.boot.product.hardware.sku", "alioth");
-    property_override("ro.product.model", "M2012K11AG");
-    property_override("ro.product.brand", "POCO");
-    property_override("ro.product.vendor.marketname", "POCO F3");
-    property_override("ro.product.vendor.manufacturer", "Xiaomi");
-    property_override("ro.product.vendor.brand", "POCO");
-    property_override("ro.product.vendor.model", "M2012K11AG");
-}
+void set_device_props(const string brand, const string marketname,
+        const string device, const string model) {
+    // list of partitions to override props
+    string source_partitions[] = { "", "bootimage", "odm.", "product.",
+                                   "system", "system_ext.", "vendor." };
 
-void load_xiaomi_mi11x() {
-    property_override("ro.product.model", "M2012K11AI");
-    property_override("ro.product.brand", "Mi");
-    property_override("ro.product.vendor.marketname", "Mi 11X");
-    property_override("ro.product.vendor.manufacturer", "Xiaomi");
-    property_override("ro.product.vendor.brand", "Mi");
-    property_override("ro.product.vendor.model", "M2012K11AI");
-}
-
-void vendor_load_properties() {
-    std::string region = GetProperty("ro.boot.hwc", "");
-    if (region.find("INDIA") != std::string::npos) {
-        load_xiaomi_mi11x();
-    } else if (region.find("CN") != std::string::npos) {
-        load_redmi_k40();
-    } else {
-        load_poco_f3();
+    for (const string &source : source_partitions) {
+        set_ro_build_prop(source, "brand", brand, true);
+        set_ro_build_prop(source, "marketname", marketname, true);
+        set_ro_build_prop(source, "device", device, true);
+        set_ro_build_prop(source, "product", device, false);
+        set_ro_build_prop(source, "model", model, true);
     }
-
-    load_dalvikvm_properties();
 }
+
+void vendor_load_properties()
+{
+    /*
+     * Detect device and configure properties
+     */
+    string hwc = GetProperty("ro.boot.hwc", "");
+    string sku = GetProperty("ro.boot.product.hardware.sku", "");
+
+    if (hwc == "CN") { // K30S Ultra (China)
+            set_device_props("Xiaomi", "K30S Ultra", "apollo", "M2007J3SC");
+    } else {
+        if (sku == "pro") { // Mi 10T Pro
+            set_device_props("Xiaomi", "Mi 10T Pro", "apollo", "M2007J3SG");
+        } else { // Mi 10T
+            set_device_props("Xiaomi", "Mi 10T", "apollo", "M2007J3SY");
+        }
+    }

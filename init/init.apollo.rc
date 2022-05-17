@@ -82,6 +82,3 @@ service nqnfc_2_0_hal_service /vendor/bin/hw/vendor.nxp.hardware.nfc@2.0-service
     user nfc
     group nfc
     disabled
-
-on boot && property:ro.boot.product.hardware.sku=alioth
-    enable nqnfc_2_0_hal_service

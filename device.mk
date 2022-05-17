@@ -12,11 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BOARD_BOOT_HEADER_VERSION := 3
-
 # Inherit from sm8250-common
 $(call inherit-product, device/xiaomi/sm8250-common/kona.mk)
-$(call inherit-product, vendor/xiaomi/alioth/alioth-vendor.mk)
+$(call inherit-product, vendor/xiaomi/apollo/apollo-vendor.mk)
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -65,9 +63,9 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.alioth.rc \
+    init.apollo.rc \
     init.mi.btmac.sh \
-    ueventd.alioth.rc
+    ueventd.apollo.rc
 
 # Keyboard bottom padding in dp for portrait mode
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -88,27 +86,8 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/nfc/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
-# Overlays
-PRODUCT_PACKAGES += \
-    AliothFrameworks \
-    AliothSettings \
-    AliothSystemUI \
-    AOSPAAliothFrameworks \
-    AOSPAAliothSettings \
-    SettingsOverlayM2012K11AG \
-    SettingsOverlayM2012K11AI \
-    SettingsProviderM2012K11AC \
-    SettingsProviderM2012K11AG \
-    SettingsProviderM2012K11AI \
-    WifiOverlayM2012K11AC \
-    WifiOverlayM2012K11AG \
-    WifiOverlayM2012K11AI
-
 # Project ID Quota
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
-# QTI
-TARGET_NFC_SKU := alioth
 
 # Sensors
 PRODUCT_COPY_FILES += \
