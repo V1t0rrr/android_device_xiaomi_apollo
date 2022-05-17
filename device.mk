@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+CURRENT_DEVICE := apollo
+
+PRODUCT_BUILD_SUPER_PARTITION := false
+
 # Inherit from sm8250-common
 $(call inherit-product, device/xiaomi/sm8250-common/kona.mk)
 $(call inherit-product, vendor/xiaomi/apollo/apollo-vendor.mk)
